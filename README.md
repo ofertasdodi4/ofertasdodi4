@@ -5,79 +5,308 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ofertas do Dia</title>
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-margin:0;
-}
-header{
-background:#ff6b00;
-color:white;
-padding:20px;
-text-align:center;
-}
-.container{
-max-width:1100px;
-margin:20px auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:20px;
-}
-.card{
-background:white;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
-.card img{
-width:100%;
-}
-.card h2{
-font-size:18px;
-padding:10px;
-}
-.preco-antigo{
-text-decoration:line-through;
-color:#888;
-padding:0 10px;
-}
-.preco{
-color:#e60023;
-font-size:24px;
-font-weight:bold;
-padding:0 10px;
-}
-.botao{
-display:block;
-margin:15px;
-background:#0a7cff;
-color:white;
-text-align:center;
-padding:12px;
-text-decoration:none;
-border-radius:8px;
-}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+  }
+
+  /* Cabeçalho Rosa Vibrante */
+  header {
+    background: linear-gradient(135deg, #FF1493, #FF69B4);
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .header-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .logo-text {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+  }
+  
+  /* Botão do WhatsApp Verde */
+  .btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+  .btn-whatsapp:hover {
+    transform: scale(1.03);
+  }
+
+  /* Grade de Produtos */
+  .container {
+    max-width: 1100px;
+    margin: 25px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  /* Card de Produto */
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border: 1px solid #e1e8ed;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+
+  /* Selo de Oferta */
+  .badge-promo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #FF1493;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .card-img-wrapper {
+    width: 100%;
+    height: 200px;
+    padding: 15px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card h2 {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+    font-weight: 600;
+    height: 2.7em;
+    overflow: hidden;
+  }
+
+  .preco-antigo {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+  }
+  
+  /* Preço em Rosa */
+  .preco {
+    color: #FF1493;
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  /* Bloco do Cupom */
+  .cupom {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+    border: 1px dashed #ce93d8;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  /* Botão de Ação Roxo */
+  .botao {
+    display: block;
+    background: #8e44ad;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+    margin-top: auto;
+    box-shadow: 0 2px 4px rgba(142, 68, 173, 0.3);
+  }
+  .botao:hover {
+    background: #732d91;
+  }
+
+  footer {
+    text-align: center;
+    padding: 25px 15px;
+    font-size: 12px;
+    color: #666;
+    max-width: 800px;
+    margin: 20px auto 0 auto;
+  }
 </style>
 </head>
 <body>
 
 <header>
-<h1>🔥 Ofertas do Dia</h1>
-<p>As melhores promoções todos os dias</p>
+  <div class="header-content">
+    <span class="logo-text">Ofertas do Dia</span>
+    
+    <a href="https://chat.whatsapp.com/CKdQt7dEt8x9Irwq1Ov00R?s=cl&p=i&mlu=4" target="_blank" class="btn-whatsapp">
+      Entrar no Grupo 
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
+      </svg>
+    </a>
+  </div>
 </header>
 
 <div class="container">
 
-<div class="card">
-<img src="https://via.placeholder.com/400x300">
-<h2>Produto de Exemplo</h2>
-<p class="preco-antigo">De R$199,90</p>
-<p class="preco">R$99,90</p>
-<a class="botao" href="#">Comprar</a>
-</div>
+  <!-- Card 1 -->
+  <div class="card">
+    <span class="badge-promo">OFERTA</span>
+    <div class="card-img-wrapper">
+      <img src="imag4.jpeg" alt="YoPro">
+    </div>
+    <div class="card-body">
+      <h2>YoPro Bebida Láctea Chocolate</h2>
+      <p class="preco-antigo">De R$ 98,29</p>
+      <p class="preco">R$ 79,00</p>
+      <a class="botao" href="https://link.amazon/B0gttLqfD" target="_blank">Pegar Promoção</a>
+    </div>
+  </div>
 
-</div>
+  <!-- Card 2 -->
+  <div class="card">
+    <span class="badge-promo">OFERTA</span>
+    <div class="card-img-wrapper">
+      <img src="imagem.jpeg" alt="Tenis Fila">
+    </div>
+    <div class="card-body">
+      <h2>Tenis Fila</h2>
+      <p class="preco-antigo">De R$ </p>
+      <p class="preco">R$ 227,99</p>
+      <a class="botao" href="https://link.amazon/B021mSXKQ" target="_blank">Pegar Promoção</a>
+    </div>
+  </div>
+ 
+  <!-- Card 3 -->
+  <div class="card">
+    <span class="badge-promo">OFERTA</span>
+    <div class="card-img-wrapper">
+      <img src="imagem2.jpeg" alt="Rexona Aerossol">
+    </div>
+    <div class="card-body">
+      <h2>Rexona Aerossol</h2>
+      <p class="preco-antigo">De R$ 22,99</p>
+      <p class="preco">R$ 18,70</p>
+      <a class="botao" https://link.amazon/B0gnrVQYL" target="_blank">Pegar Promoção</a>
+    </div>
+  </div>
+
+<!-- Card 4 -->
+<div class="card">
+    <span class="badge-promo">OFERTA</span>
+    <div class="card-img-wrapper">
+      <img src="imag.jpeg" alt="Protetor solar Mantercorp">
+    </div>
+    <div class="card-body">
+      <h2>Protetor solar Mantercorp</h2>
+      <p class="preco-antigo">De R$ 109,90</p>
+      <p class="preco">R$ 76,58</p>
+      <a class="botao" https://link.amazon/B06pC4MwY" target="_blank">Pegar Promoção</a>
+    </div>
+  </div>
+
+ <!-- Card 5 -->
+  <div class="card">
+    <span class="badge-promo">OFERTA</span>
+    <div class="card-img-wrapper">
+      <img src="imag.jpeg" alt="Mascara de cilios Melu">
+    </div>
+    <div class="card-body">
+      <h2>Mascara de cilios melu</h2>
+      <p class="preco-antigo">De R$ </p>
+      <p class="preco">R$ 20,69</p>
+      <a class="botao" https://link.amazon/B01vQfXpA" target="_blank">Pegar Promoção</a>
+    </div>
+  </div>
+
+ <!-- Card 6 -->
+  <div class="card">
+    <span class="badge-promo">OFERTA</span>
+    <div class="card-img-wrapper">
+      <img src="imag.jpeg" alt="Prendedor de Plastico 16 und">
+    </div>
+    <div class="card-body">
+      <h2>Prendedor de Plastico 16 und</h2>
+      <p class="preco-antigo">De R$ </p>
+      <p class="preco">R$ 10,20</p>
+      <a class="botao" https://link.amazon/B05o2Lelf" target="_blank">Pegar Promoção</a>
+    </div>
+  </div>
+
+  <!-- Card 7 -->
+  <div class="card">
+    <span class="badge-promo">OFERTA</span>
+    <div class="card-img-wrapper">
+      <img src="imag.jpeg" alt="Shampoo a seco">
+    </div>
+    <div class="card-body">
+      <h2>Shampoo a seco</h2>
+      <p class="preco-antigo">De R$ 24,77</p>
+      <p class="preco">R$ 19,74</p>
+      <a class="botao" https://link.amazon/B0fnZISPM" target="_blank">Pegar Promoção</a>
+    </div>
+  </div>
+  
+<footer>
+  <p>Como participante do Programa de Associados da Amazon, sou remunerado pelas compras qualificadas efetuadas por meio dos links disponibilizados neste site.</p>
+</footer>
 
 </body>
 </html>
